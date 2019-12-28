@@ -1,0 +1,9 @@
+{% extends "base.html" %} 
+{% block content %}
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+<p>If you have an account, you can <a href="{% url 'register' %}">sign in</a></p>
+{% load crispy_forms_tags %}
+
+
+{% endblock %}
+

@@ -7,10 +7,10 @@ class UserRegistrationForm(UserCreationForm):
 	"""
 	form that allow users to register
 	"""
-	password1 = forms.Charfield(
+	password1 = forms.CharField(
 		label='Password',
 		widget=forms.PasswordInput)
-	password2 = forms.Charfield(
+	password2 = forms.CharField(
 		label='Password Confirmation',
 		widget=forms.PasswordInput)
 
@@ -41,5 +41,5 @@ class UserLoginForm(forms.Form):
 	"""
 	form that allow users to log in
 	"""
-	username = forms.Charfield()
-	password = forms.Charfield(widget=forms.PasswordInput)
+	username = forms.CharField()
+	password = forms.CharField(widget=forms.PasswordInput)

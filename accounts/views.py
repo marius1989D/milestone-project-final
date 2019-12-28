@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from accounts.forms import UserLoginForm, UserRegistrationForm
+from .forms import UserLoginForm, UserRegistrationForm
 
 # Create your views here.
 def index(request):
-	return render(request, 'index.html')
+	return render(request, 'accounts/index.html')
 
 def registration(request):
     """Render the regiastration page"""
