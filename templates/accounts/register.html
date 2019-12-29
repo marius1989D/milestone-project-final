@@ -1,13 +1,23 @@
 {% extends "base.html" %}
-{% load bootstrap_tags %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <form method="post" action="{% url 'register' %}" class="accountform">
-        <fieldset class="form-group">
-            <legend>Create a new account</legend>
-            <p>Already got an account? <a href="{% url 'login' %}">Sign In</a></p>
+<div class="container">
+    <div class="content-section">
+        <form method="POST">
             {% csrf_token %}
-            {{  user_form | as_bootstrap }}
-            <button type="submit" class="btn btn-primary">Create account</button>
-        </fieldset>
-    </form>
-{% endblock %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Register Here</legend>
+                {{ user_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock content %}
