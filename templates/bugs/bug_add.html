@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+{% block content %}
+{% load crispy_forms_tags %}
+{% block title %} Submit Your Bug{% endblock %}
+
+{% block sidebar %} 
+  {% include 'sidebar.html' %} 
+{% endblock sidebar %}
+<div class="col-md-8 card mb-4  mt-3 ">
+    <div class="card-body">
+        
+        <h3>Submit Your Bug Here</h3>
+        <form method="post" style="margin-top: 1.3em;">
+            {{ bug_form | crispy }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+        
+    </div>
+</div>
+
+{% endblock %}

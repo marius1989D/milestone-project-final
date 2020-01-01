@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from .models import Bug, Comment
-from .forms import BugCommentForm
+from .forms import BugCommentForm, BugPostForm
 
 # Create your views here.
 def bugs_list(request):
@@ -15,6 +15,9 @@ def bugs_list(request):
 	return render(request, 'bugs/bugs.html', {'bugs': bugs})
 
 def bug_detail(request, pk):
+	"""
+	This view allow users to see a specific bug report in a separate window
+	"""
 	bug = get_object_or_404(Bug, pk=pk)
 	bug.views += 1
 	bug.save()
@@ -36,3 +39,20 @@ def bug_detail(request, pk):
 											'comments': comments,
 											'new_comment': new_comment,
 											'comment_form': comment_form})
+
+def bug_add(request):
+	"""
+	This view allow users to submit their own bug reports
+	"""
+	new_bug = None
+	if request.method == 'POST':
+		bug_form = BugPostForm(request.POST)
+		if bug_form.is_valid:
+			bug = bug_form.save(commit=False)
+			bug.author = request.user
+			bug.save()
+			return redirect('bug_detail', pk=bug.pk)
+	else:
+		bug_form = BugPostForm()
+	return render(request, 'bugs/bug_add.html', {'new_bug': new_bug,
+												'bug_form': bug_form})
