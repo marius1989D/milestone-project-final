@@ -19,13 +19,13 @@
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
-            {% for bug in bug_list %}
+            {% for bug in bugs %}
             <div class="card mb-4">
                 <div class="card-body">
                     <h2 class="card-title">{{ bug.title }}</h2>
                     <p class="card-text text-muted h6">{{ bug.author }} | {{ bug.created_on}} </p>
                     <p class="card-text">{{bug.content|slice:":200" }}</p>
-                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="{% url 'bug_detail' pk=bug.pk %}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
             </div>
             {% endfor %}
