@@ -15,8 +15,11 @@
         </div>
     </div>
 </header>
+
 <div class="container">
+
     <div class="row">
+
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
             {% for bug in bugs %}
@@ -24,27 +27,36 @@
                 <div class="card-body">
                     <h2 class="card-title">{{ bug.title }}</h2>
                     <p class="card-text text-muted h6">{{ bug.author }} | {{ bug.created_on}} </p>
+                    <span class="views">{{ bug.views }} <i class="fa fa-eye"></i></span>
                     <p class="card-text">{{bug.content|slice:":200" }}</p>
                     <a href="{% url 'bug_detail' pk=bug.pk %}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
             </div>
             {% endfor %}
+            
         </div>
         {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
     </div>
+    <div class="pagination">
+        {% if bugs.has_previous %}
+        <a class="btn btn-outline-info" href="?page=1">First</a>
+        <a class="btn btn-outline-info" href="?page={{ features.previous_page_number }}">&lt;</a>
+        {% endif %}
+        {% for num in bugs.paginator.page_range %}
+        {% if bugs.number == num %}
+        <a class="btn btn-info" href="?page={{ bugs.number }}"> {{ bugs.number }}</a>
+        {% elif num > bugs.number|add:'-2' and num < bugs.number|add:'2' %} <a class="btn btn-outline-info" href="?page={{ num }}"> {{ num }}</a>
+            {% endif %}
+            {% endfor %}
+            {% if bugs.has_next %}
+            <a class="btn btn-outline-info" href="?page={{ features.previous_page_number }}">&gt;</a>
+            <a class="btn btn-outline-info" href="?page={{ bugs.paginator.num_pages }}">last</a>
+            {% endif %}
+    </div>
 </div>
-{% if is_paginated %}
-<nav aria-label="Page navigation conatiner"></nav>
-<ul class="pagination justify-content-center">
-  {% if page_obj.has_previous %}
-  <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-  {% endif %}
-  {% if page_obj.has_next %}
-  <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
 
-  {% endif %}
-</ul>
-</nav>
-</div>
-{% endif %}
+
+    
+
+
 {% endblock %}

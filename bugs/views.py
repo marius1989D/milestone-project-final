@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
+from django.core.paginator import Paginator
 from .models import Bug, Comment
 from .forms import BugCommentForm, BugPostForm
 
@@ -11,7 +12,9 @@ def bugs_list(request):
 	This view will list all bugs 
 	"""
 	bugs = Bug.objects.order_by('-created_on').all()
-	paginate_by = 3
+	paginator = Paginator(bugs, 4)
+	page = request.GET.get('page')
+	bugs = paginator.get_page(page)
 	return render(request, 'bugs/bugs.html', {'bugs': bugs})
 
 def bug_detail(request, pk):
