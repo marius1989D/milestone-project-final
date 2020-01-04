@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-{% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+
 <div class="container">
 
     <div class="content-section">
 
-        <form method="POST">
+        <form method="post" class="form login-form">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Log In</legend>
