@@ -70,3 +70,19 @@ def bug_delete(request, pk):
 	else:
 		messages.error(request, 'You can\'t delete this!')
 	return redirect('bugs:bugs_list')
+
+def bug_edit(request, pk):
+	bug = get_object_or_404(Bug, pk=pk)
+	if request.user == bug.author:
+		if request.method == "POST":
+			bug_form = BugPostForm(request.POST, instance=bug)
+			if bug_form.is_valid:
+				bug_form.save()
+				return redirect('bugs:bug_detail', pk=bug.pk)
+		else:
+			bug_form = BugPostForm(instance=bug)
+		return render(request, "bugs/bug_add.html", {"bug_form": bug_form})
+	else:
+		messages.error(request, 'You can\'t edit this!')
+		bug_form = BugPostForm()
+	return redirect('bugs:bug_edit')

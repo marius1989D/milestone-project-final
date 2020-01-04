@@ -9,7 +9,8 @@
         <h1>{% block title %} {{ bug.title }} {% endblock title %}</h1>
         <p class=" text-muted">{{ bug.author }} | {{ bug.created_on }}</p>
         <p class="card-text ">{{ bug.content | safe }}</p>
-        <i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteBugModal{{bug.id}}"></i> 
+        <i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteBugModal{{bug.id}}"></i>
+        <a href="{% url 'bugs:bug_edit' bug.id %}"><i class="fas fa-edit"></i></a>
       </div>
       <!--Popup modal for confirming bug delete-->
       <div class="modal" id="deleteBugModal{{bug.id}}" tabindex="-1" role="dialog">
