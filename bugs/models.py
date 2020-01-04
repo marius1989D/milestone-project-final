@@ -37,6 +37,9 @@ class Bug(models.Model):
 		return self.title
 	
 class Comment(models.Model):
+	"""
+	Creates a comment model on the database
+	"""
 	bug = models.ForeignKey(Bug, on_delete=models.CASCADE, related_name='comments')
 	name = models.CharField(max_length=80)
 	email = models.EmailField()
@@ -49,6 +52,17 @@ class Comment(models.Model):
 
 	def __str__(self):
 		return 'Comment {} by {}'.format(self.body, self.name)
+
+class Choice(models.Model):
+	"""
+	Creates a vote model on the database
+	"""
+	bug = models.ForeignKey(Bug, on_delete=CASCADE)
+	choice = models.CharField(max_length=200)
+	votes = models.IntegerField(default=0)
+
+	def __str__(self):
+		return self.choice
 
 
 
