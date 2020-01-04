@@ -15,7 +15,9 @@
         </div>
     </div>
 </header>
-
+<div class="col-4 col-md-4 col-lg-2">
+        <a href="{% url 'bugs:bug_add' %}" class="btn btn-add">Report a Bug </a>
+    </div>
 <div class="container">
 
     <div class="row">
@@ -29,7 +31,7 @@
                     <p class="card-text text-muted h6">{{ bug.author }} | {{ bug.created_on}} </p>
                     <span class="views">{{ bug.views }} <i class="fa fa-eye"></i></span>
                     <p class="card-text">{{bug.content|slice:":200" }}</p>
-                    <a href="{% url 'bug_detail' pk=bug.pk %}" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="{% url 'bugs:bug_detail' pk=bug.pk %}" class="btn btn-outline-info">Read More &rarr;</a>
                 </div>
             </div>
             {% endfor %}
