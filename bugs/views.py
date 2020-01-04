@@ -7,7 +7,7 @@ from django.contrib import messages
 from .models import Bug, Comment
 from .forms import BugCommentForm, BugPostForm
 
-# Create your views here.
+
 def bugs_list(request):
 	"""
 	This view will list all bugs 
@@ -21,21 +21,21 @@ def bugs_list(request):
 def bug_detail(request, pk):
 	"""
 	This view allow users to see a specific bug report in a separate window
+	and also to add comments to it
 	"""
+	# Retrive bug details
 	bug = get_object_or_404(Bug, pk=pk)
 	bug.views += 1
 	bug.save()
 	comments = bug.comments.filter(active=True)
 	new_comment = None
 
+	# Comments functionality *** credit for the code to https://djangocentral.com
 	if request.method == 'POST':
 		comment_form = BugCommentForm(data=request.POST)
 		if comment_form.is_valid:
-			# Create Comment object but don't save to database yet
 			new_comment = comment_form.save(commit=False)
-			# Assign the current post to the comment
 			new_comment.bug = bug
-			# Save the comment to the database
 			new_comment.save()
 	else:
 		comment_form = BugCommentForm
@@ -54,7 +54,7 @@ def bug_add(request):
 			bug = bug_form.save(commit=False)
 			bug.author = request.user
 			bug.save()
-			return redirect('bugs_list', pk=bug.pk)
+			return redirect('bugs:bugs_list')
 	else:
 		bug_form = BugPostForm()
 	return render(request, 'bugs/bug_add.html', {'bug_form': bug_form})
