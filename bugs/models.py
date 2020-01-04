@@ -3,11 +3,9 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
-CHOICES = (
-	(0, 'Received'),
-	(1, 'In progress'),
-	(2, 'Done')
-)
+
+
+
 
 class Bug(models.Model):
 
@@ -15,11 +13,21 @@ class Bug(models.Model):
 	Creates a bug post model on the database
 	"""
 
+	Received = 'Received'
+	In_progress = 'In progress'
+	Done = 'Done'
+
+	CHOICES = [
+		(Received, 'Received'),
+		(In_progress, 'In progress'),
+		(Done, 'Done')
+	]
+
 	title = models.CharField(max_length=200)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	content = models.TextField()
 	created_on = models.DateTimeField(auto_now_add=True)
-	status = models.IntegerField(choices=CHOICES, default=0)
+	status = models.CharField(max_length=15 ,choices=CHOICES, default=Received)
 	views = models.IntegerField(default=0)
 
 	class Meta:

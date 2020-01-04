@@ -8,6 +8,15 @@ from .models import Bug, Comment
 from .forms import BugCommentForm, BugPostForm
 
 
+
+def get_messages(request):
+    """
+    Return the message storage on the request if it exists, otherwise return
+    an empty list.
+    """
+    return getattr(request, '_messages', [])
+
+
 def bugs_list(request):
 	"""
 	This view will list all bugs 
@@ -83,6 +92,6 @@ def bug_edit(request, pk):
 			bug_form = BugPostForm(instance=bug)
 		return render(request, "bugs/bug_add.html", {"bug_form": bug_form})
 	else:
-		messages.error(request, 'You can\'t edit this!')
+		messages.error(request, f'You can\'t edit this!')
 		bug_form = BugPostForm()
-	return redirect('bugs:bug_edit')
+	return redirect('bugs:bug_detail', pk=bug.pk)

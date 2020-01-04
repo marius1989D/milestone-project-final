@@ -15,9 +15,11 @@
         </div>
     </div>
 </header>
-<div class="col-4 col-md-4 col-lg-2">
-        <a href="{% url 'bugs:bug_add' %}" class="btn btn-add">Report a Bug </a>
-    </div>
+<div class="container">
+    <button type="button" class="btn btn-outline-info">
+        <a href="{% url 'bugs:bug_add' %}">Report a Bug &rarr;</a>
+    </button>
+</div>
 <div class="container">
 
     <div class="row">
@@ -27,8 +29,16 @@
             {% for bug in bugs %}
             <div class="card mb-4">
                 <div class="card-body">
-                    <h2 class="card-title">{{ bug.title }}</h2>
-                    <p class="card-text text-muted h6">{{ bug.author }} | {{ bug.created_on}} </p>
+                    <h2 class="card-title"><b>{{ bug.title }}</b>  
+                    {% if bug.status == 'Received' %}
+        			  <span class="alert alert-info"><i>Status: </i><b>{{ bug.status }}</b></span>
+        			{% elif bug.status == 'In progress' %}
+        			  <span class="alert alert-primary"><i>Status: </i><b>{{ bug.status }}</b></span>
+        			{% else %}
+        			  <span class="alert alert-success"><i>Status: </i><b>{{ bug.status }}</b></span>
+        			{% endif %}
+        			</h2>
+                    <p class="card-text text-muted h6">{{ bug.author }}</p>
                     <span class="views">{{ bug.views }} <i class="fa fa-eye"></i></span>
                     <p class="card-text">{{bug.content|slice:":200" }}</p>
                     <a href="{% url 'bugs:bug_detail' pk=bug.pk %}" class="btn btn-outline-info">Read More &rarr;</a>
