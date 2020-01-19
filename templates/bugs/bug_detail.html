@@ -4,7 +4,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 left  top">
+    <div class="col-md-8 card mb-4  mt-3 left top card-color">
       <div class="card-body">
         <h2><b>{{ bug.title }}</b>
         {% if bug.status == 'Received' %}
@@ -19,9 +19,24 @@
         <p class=" text-muted">Posted by <b>{{ bug.author }}</b> on <b>{{ bug.created_on }}</b></p>
         <br>
         <p class="card-text ">{{ bug.content | safe }}</p>
+        <!-- LIKE -->
+        <p class=" text-muted">{{ bug.likes }}</p>
+
+
+        <form method="post" action="{% url 'bugs:bug_likes' bug.id %}">
+          {% csrf_token %}
+          <button type="submit" name="bug_id" value="{{ bug.id }}" class="btn btn-primary">Like</button>
+        </form>
+
+
+
+
         <i class="fas fa-trash-alt icon-cust" data-toggle="modal" data-target="#deleteBugModal{{bug.id}}"></i>
         <a href="{% url 'bugs:bug_edit' bug.id %}"><i class="fas fa-edit icon-cust"></i></a>
       </div>
+
+
+      
      <!-- {% if messages %}
         <ul class="messages alert alert-danger">
           {% for message in messages %}
@@ -43,7 +58,7 @@
                     <p>Are you sure you want to delete this?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary"><a class="btn btn-delete" href="{% url 'bugs:bug_delete' bug.id %}">
+                    <button type="button" class="btn btn-primary"><a class="btn btn-delete" href="{% url 'bugs:bug_delete' bug.pk %}">
                         Delete
                     </a></button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -56,7 +71,7 @@
     {% block sidebar %} 
       {% include 'sidebar.html' %} 
     {% endblock sidebar %}
-    <div class="col-md-8 card mb-4  mt-3 ">
+    <div class="col-md-8 card mb-4 mt-3 card-color">
       <div class="card-body">
         
         <!-- comments -->
@@ -80,7 +95,7 @@
         {% endfor %}
       </div>
     </div>
-    <div class="col-md-8 card mb-4  mt-3 ">
+    <div class="col-md-8 card mb-4 mt-3 card-color">
       <div class="card-body">
         {% if new_comment %}
         <div class="alert alert-success" role="alert">

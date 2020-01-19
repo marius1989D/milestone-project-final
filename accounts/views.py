@@ -34,7 +34,7 @@ def login(request):
 
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, f"Account created for {username}")
+                messages.success(request, "You are loggd in!")
                 return redirect('index')
             else:
                 user_form.add_error(None, "Your username or password is incorrect")
@@ -73,7 +73,9 @@ def register(request):
 
 @login_required
 def profile(request):
-    """A view that displays the profile page of a logged in user"""
+    """
+    A view that displays the profile page of a logged in user
+    """
     return render(request, 'accounts/profile.html')
 
 

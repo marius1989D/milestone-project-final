@@ -4,6 +4,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from .models import Bug, Comment
 from .forms import BugCommentForm, BugPostForm
 
@@ -38,7 +39,6 @@ def bug_detail(request, pk):
 	bug.save()
 	comments = bug.comments.filter(active=True)
 	new_comment = None
-
 	# Comments functionality *** credit for the code to https://djangocentral.com
 	if request.method == 'POST':
 		comment_form = BugCommentForm(data=request.POST)
@@ -53,6 +53,13 @@ def bug_detail(request, pk):
 											'new_comment': new_comment,
 											'comment_form': comment_form})
 
+def bug_likes(request, pk):
+	bug = get_object_or_404(Bug, pk=pk)
+	bug.likes += 1
+	bug.save()
+	return redirect('bugs:bug_detail', pk=bug.pk)
+
+
 def bug_add(request):
 	"""
 	This view allow users to submit their own bug reports
@@ -63,7 +70,8 @@ def bug_add(request):
 			bug = bug_form.save(commit=False)
 			bug.author = request.user
 			bug.save()
-			return redirect('bugs:bugs_list')
+			messages.success(request, 'Successfully created!')
+			return redirect('bugs:bug_detail', pk=bug.pk)
 	else:
 		bug_form = BugPostForm()
 	return render(request, 'bugs/bug_add.html', {'bug_form': bug_form})
@@ -95,3 +103,5 @@ def bug_edit(request, pk):
 		messages.error(request, f'You can\'t edit this!')
 		bug_form = BugPostForm()
 	return redirect('bugs:bug_detail', pk=bug.pk)
+
+

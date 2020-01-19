@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import bugs_list, bug_detail, bug_add, bug_delete, bug_edit
+from . import views
+from .views import bugs_list, bug_detail, bug_add, bug_delete, bug_edit, bug_likes
 
 app_name = 'bugs'
 
@@ -9,4 +10,5 @@ urlpatterns = [
 	path('bug_add/', bug_add, name='bug_add'),
 	path('<int:pk>/bug_delete/', bug_delete, name='bug_delete'),
 	path('<int:pk>/bug_edit/', bug_edit, name='bug_edit'),
+	path('likes/<int:pk>/', bug_likes, name='bug_likes'),
 ]
