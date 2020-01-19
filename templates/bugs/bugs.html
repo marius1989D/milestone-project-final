@@ -2,6 +2,8 @@
 {% block content %}
 
 {% block masthead %} {% include 'masthead.html' %} {% endblock masthead %}
+
+{% block feedback_messages %} {% include 'feedbackmessages.html' %} {% endblock feedback_messages %}
 <div class="container">
     <a href="{% url 'bugs:bug_add' %}" class="btn btn-outline-info">Report a Bug &rarr;</a>
 </div>

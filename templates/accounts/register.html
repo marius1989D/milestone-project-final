@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+{% block feedback_messages %} {% include 'feedbackmessages.html' %} {% endblock feedback_messages %}
 <div class="container">
     <div class="content-section">
         <form method="POST">

@@ -18,7 +18,7 @@ def index(request):
 def logout(request):
     """A view that logs the user out and redirects back to the index page"""
     auth.logout(request)
-    messages.success(request, 'You have successfully logged out')
+    messages.success(request, 'You have successfully logged out!')
     return render(request, 'accounts/logout.html')
 
 
@@ -34,10 +34,10 @@ def login(request):
 
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You are loggd in!")
+                messages.success(request, 'You are loggd in!', extra_tags='alert')
                 return redirect('index')
             else:
-                user_form.add_error(None, "Your username or password is incorrect")
+                user_form.add_error(None, 'Your username or password is incorrect!')
     else:
         user_form = UserLoginForm
     return render(request, 'accounts/login.html', {'user_form': user_form})

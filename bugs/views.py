@@ -57,6 +57,7 @@ def bug_likes(request, pk):
 	bug = get_object_or_404(Bug, pk=pk)
 	bug.likes += 1
 	bug.save()
+
 	return redirect('bugs:bug_detail', pk=bug.pk)
 
 
@@ -70,7 +71,7 @@ def bug_add(request):
 			bug = bug_form.save(commit=False)
 			bug.author = request.user
 			bug.save()
-			messages.success(request, 'Successfully created!')
+			messages.success(request, f'Successfully created!')
 			return redirect('bugs:bug_detail', pk=bug.pk)
 	else:
 		bug_form = BugPostForm()
