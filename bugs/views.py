@@ -5,6 +5,8 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+
 from .models import Bug, Comment
 from .forms import BugCommentForm, BugPostForm
 
@@ -12,7 +14,7 @@ from .forms import BugCommentForm, BugPostForm
 
 def bugs_list(request):
 	"""
-	This view will list all bugs 
+	This view will list all bugs starting with the most recent ones
 	"""
 	bugs = Bug.objects.order_by('-created_on').all()
 	paginator = Paginator(bugs, 4)
@@ -45,7 +47,12 @@ def bug_detail(request, pk):
 											'new_comment': new_comment,
 											'comment_form': comment_form})
 
+
+@login_required
 def bug_likes(request, pk):
+	"""
+	This view allow users to like bug reports
+	"""
 	bug = get_object_or_404(Bug, pk=pk)
 	bug.likes += 1
 	bug.save()
@@ -53,9 +60,10 @@ def bug_likes(request, pk):
 	return redirect('bugs:bug_detail', pk=bug.pk)
 
 
+@login_required
 def bug_add(request):
 	"""
-	This view allow users to submit their own bug reports
+	This view allow users to submit their bug reports
 	"""
 	if request.method == 'POST':
 		bug_form = BugPostForm(request.POST)
@@ -69,6 +77,8 @@ def bug_add(request):
 		bug_form = BugPostForm()
 	return render(request, 'bugs/bug_add.html', {'bug_form': bug_form})
 
+
+@login_required
 def bug_delete(request, pk):
 	"""
 	This view allow a user to delete a bug report, but only if is the author 
@@ -83,7 +93,12 @@ def bug_delete(request, pk):
 
 	return redirect('bugs:bugs_list')
 
+
+@login_required
 def bug_edit(request, pk):
+	"""
+	This view allow users to edit a previously submited bug report
+	"""
 	bug = get_object_or_404(Bug, pk=pk)
 	if request.user == bug.author:
 		if request.method == "POST":
