@@ -79,6 +79,8 @@ def bug_delete(request, pk):
 		messages.success(request, 'Successfully deleted!')
 	else:
 		messages.error(request, 'You can\'t delete this!')
+		return redirect('bugs:bug_detail', pk=bug.pk)
+
 	return redirect('bugs:bugs_list')
 
 def bug_edit(request, pk):
