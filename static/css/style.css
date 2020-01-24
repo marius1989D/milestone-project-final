@@ -1,14 +1,16 @@
 body {
-    background-image: url("../img/bug.jpg");
+    font-family: "Roboto", sans-serif;
+    font-size: 17px;
+    background-color: #fdfdfd;
+    background-image: url("../img/Bugs.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%; 
     min-height: 100vh;
-    font-family: "Roboto", sans-serif;
-    font-size: 17px;
-    background-color: #fdfdfd;
 }
+
+
 .shadow {
     box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.1);
 }
@@ -38,13 +40,39 @@ h2>span {
     float: right;
 }
 
+.nav-font {
+    font-size: 20px;
+    color: #295d7a!important;
+}
+
+.nav-logo {
+    font-size: 40px;
+    color: #295d7a;
+}
+
+.views {
+    float: right;
+    padding-right: 15px;
+}
+
 i.icon-cust {
     padding-left: 25px;
     float: right;
     font-size: 1.5rem;
-    color: #000;
+    color: #c31f1f;
 }
 
 .card-color {
     background-color: #d4dbdc;
 }
+
+
+.card-head-cust {
+    background-color: #96cbd2;
+}
+
+.card-body-cust {
+    background-color: #d0f1f6ad;
+}
+
+
