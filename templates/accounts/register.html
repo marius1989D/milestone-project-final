@@ -1,24 +1,29 @@
 {% extends "base.html" %}
+{% block page_title %} Register {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
 
 {% block feedback_messages %} {% include 'feedbackmessages.html' %} {% endblock feedback_messages %}
 <div class="container">
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Register Here</legend>
-                {{ registration_form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+    <div class="row blog-cust p-3 mt-5">
+        <div class="col-md-8">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Register Here</legend>
+                    {{ registration_form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-secondary" type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8">
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+                </small>
             </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
-            </small>
         </div>
     </div>
 </div>
