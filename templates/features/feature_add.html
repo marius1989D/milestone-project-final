@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+{% block page_title %} Submit Your Feature Request Here {% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+
+<div class="container ">
+    <div class="row mt-5">
+    	<div class="col-md-8">
+        	<div class="card-body card-color">
+        	    <h3>Submit Your Feature Request Here</h3>
+        	    <form method="post" style="margin-top: 1.3em;">
+        	        {{ feature_form | crispy }}
+        	        {% csrf_token %}
+        	        <button type="submit" class="btn btn-secondary  btn-lg">Submit</button>
+                    <span><a href="{% url 'features:features_list' %}" class="btn btn-danger ">Cancel</a></span>
+        	    </form>
+        	</div>
+        </div>
+
+        {% block sidebar %} 
+  			{% include 'sidebar.html' %} 
+		{% endblock sidebar %}
+
+    </div>
+</div>
+
+{% endblock %}
