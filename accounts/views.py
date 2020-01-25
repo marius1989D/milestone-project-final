@@ -71,12 +71,6 @@ def register(request):
         "registration_form": registration_form})
 
 
-@login_required
-def profile(request):
-    """
-    A view that displays the profile page of a logged in user
-    """
-    return render(request, 'accounts/profile.html')
 
 
 
