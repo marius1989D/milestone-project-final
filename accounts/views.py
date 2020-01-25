@@ -12,7 +12,7 @@ from .forms import UserRegistrationForm, UserLoginForm
 # Create your views here.
 def index(request):
     """A view that displays the index page"""
-    return render(request, "accounts/index.html")
+    return render(request, "index.html")
 
 
 def logout(request):
