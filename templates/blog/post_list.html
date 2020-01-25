@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block page_title %} Blog Home {% endblock %}
+{% block content %}
+
+{% block feedback_messages %} {% include 'feedbackmessages.html' %} {% endblock feedback_messages %}
+
+<div class="container">
+  <div class="row blog-cust mt-5 mb-5 pb-5">
+    <div class="col-md-11 text-center">
+      {% for post in post_list %}
+      <h2 class="post-title">{{ post.title }}</h2>
+      <div class="post-meta">
+        {{ post.created_on }}
+        <br/>
+        <a href="{% url 'blog:post_detail' slug=post.slug %}" class="btn btn-outline-info">Read More &rarr;</a>
+        <hr/>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -82,3 +82,27 @@ i.icon-cust {
     padding-top: 10px;
     margin-bottom: 25px;
 }
+
+
+/* blog */
+
+
+.post-title {
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+
+.postmeta {
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 0;
+    color: $gray-600;
+}
+
+.blog-cust {
+    background-color: #bdd0d3c7;
+    color: #000;
+}
+

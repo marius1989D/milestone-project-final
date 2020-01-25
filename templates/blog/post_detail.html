@@ -4,18 +4,15 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 left  top">
+    <div class="col-md-10 card mb-4  mt-3 left blog-cust top">
       <div class="card-body">
         <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
-        <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+        <p class=" text-muted"><b>Posted by <i>{{ post.author }}</i> on {{ post.created_on|date:"M d, Y" }} at {{ post.created_on|time:"h:i a" }}</b></p>
         <p class="card-text ">{{ post.content | safe }}</p>
       </div>
     </div>
-    {% block sidebar %} 
-      {% include 'sidebar.html' %} 
-    {% endblock sidebar %}
 
-    <div class="col-md-8 card mb-4  mt-3 ">
+    <div class="col-md-10 card mb-4 blog-cust mt-3 ">
       <div class="card-body">
         <!-- comments -->
         {% with comments.count as total_comments %}
@@ -38,7 +35,8 @@
         {% endfor %}
       </div>
     </div>
-    <div class="col-md-8 card mb-4  mt-3 ">
+    <div class="col-md-10 card mb-4 blog-cust mt-3 ">
+      {% if user.is_authenticated %}
       <div class="card-body">
         {% if new_comment %}
         <div class="alert alert-success" role="alert">
@@ -49,10 +47,13 @@
         <form method="post" style="margin-top: 1.3em;">
           {{ comment_form | crispy }}
           {% csrf_token %}
-          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+          <button type="submit" class="btn btn-secondary  btn-lg">Submit</button>
         </form>
         {% endif %}
+        {% else %}
+        <p>Please<a class="ml-2" href="{% url 'login' %}">Log In</a> to comment</p>
       </div>
+      {% endif %}
     </div>
   </div>
 </div>
