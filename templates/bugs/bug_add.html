@@ -1,11 +1,12 @@
 {% extends 'base.html' %} 
+{% block page_title %} Submit Your Bug Here{% endblock %}
 {% block content %}
 {% load crispy_forms_tags %}
-{% block title %} Submit Your Bug{% endblock %}
+
 
 
 <div class="container ">
-    <div class="row">
+    <div class="row mt-5">
     	<div class="col-md-8">
         	<div class="card-body card-color">
         	    <h3>Submit Your Bug Here</h3>
@@ -20,7 +21,7 @@
         {% block sidebar %} 
   			{% include 'sidebar.html' %} 
 		{% endblock sidebar %}
-		
+
     </div>
 </div>
 

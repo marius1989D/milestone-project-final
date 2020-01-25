@@ -83,7 +83,7 @@
         
         <!-- comments -->
         {% with comments.count as total_comments %}
-        <h2>{{ total_comments }} comments</h2>
+          <h2>{{ total_comments }} comments</h2>
         {% endwith %}
          
         {% for comment in comments %}
@@ -123,7 +123,9 @@
     {% endif %}
 
   </div>
-  {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+  {% if user.is_authenticated %}
+    {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+  {% endif %}
 </div>
 
 {% endblock content %}
