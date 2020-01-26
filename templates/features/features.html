@@ -30,6 +30,7 @@
                         <a href="{% url 'features:feature_detail' pk=feature.pk %}" class="btn btn-outline-dark">Read More &rarr;</a>
                         <span class="views">{{ feature.views }} <i class="fas fa-eye"></i></span>
                         <span class="views">{{ feature.likes }} <i class="fas fa-thumbs-up"></i> </span>
+                        <span class="views">{{ feature.price }} <i class="fas fa-pound-sign"></i></i> </span>
                     </div>
                 </div>
                 {% endfor %}
