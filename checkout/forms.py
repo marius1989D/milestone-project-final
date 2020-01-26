@@ -1,7 +1,7 @@
 from django import forms
 from .models import Order
 
-class MakePaymentForm(forms.form):
+class MakePaymentForm(forms.ModelForm):
 
 	MONTH_CHOICES = [(i, i) for i in range(1, 12)]
 	YEAR_CHOICES = [(i, i) for i in range(2019, 2040)]
