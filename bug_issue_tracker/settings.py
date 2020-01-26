@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'accounts',
     'bugs',
     'features',
-    
+    'cart',
 
 ]
 
@@ -81,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.contexts.cart_contents',
             ],
         },
     },

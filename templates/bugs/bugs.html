@@ -40,18 +40,18 @@
         </div>
         <div class="pagination">
             {% if bugs.has_previous %}
-            <a class="btn btn-secondary" href="?page=1">First</a>
-            <a class="btn btn-secondary" href="?page={{ features.previous_page_number }}">&lt;</a>
+                <a class="btn btn-secondary" href="?page=1">First</a>
+                <a class="btn btn-secondary" href="?page={{ features.previous_page_number }}">&lt;</a>
             {% endif %}
             {% for num in bugs.paginator.page_range %}
-            {% if bugs.number == num %}
-            <a class="btn btn-secondary" href="?page={{ bugs.number }}"> {{ bugs.number }}</a>
-            {% elif num > bugs.number|add:'-2' and num < bugs.number|add:'2' %} <a class="btn btn-secondary" href="?page={{ num }}"> {{ num }}</a>
+                {% if bugs.number == num %}
+                    <a class="btn btn-secondary" href="?page={{ bugs.number }}"> {{ bugs.number }}</a>
+                    {% elif num > bugs.number|add:'-2' and num < bugs.number|add:'2' %} <a class="btn btn-secondary" href="?page={{ num }}"> {{ num }}</a>
                 {% endif %}
-                {% endfor %}
+            {% endfor %}
                 {% if bugs.has_next %}
-                <a class="btn btn-secondary" href="?page={{ features.previous_page_number }}">&gt;</a>
-                <a class="btn btn-secondary" href="?page={{ bugs.paginator.num_pages }}">last</a>
+                    <a class="btn btn-secondary" href="?page={{ features.previous_page_number }}">&gt;</a>
+                    <a class="btn btn-secondary" href="?page={{ bugs.paginator.num_pages }}">last</a>
                 {% endif %}
         </div>
     </div>

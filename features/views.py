@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -19,7 +19,7 @@ def features_list(request):
 	features = Feature.objects.order_by('-created_on').all()
 	paginator = Paginator(features, 4)
 	page = request.GET.get('page')
-	features = paginator.get_page(page)
+	feature = paginator.get_page(page)
 	return render(request, 'features/features.html', {'features': features})
 
 def feature_detail(request, pk):
