@@ -62,7 +62,7 @@
     <div class="row blog-cust m-5 p-5">
         <p>Total</p>
         <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
-        <a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+        <a href="{% url 'checkout:checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
     </div>
     {% endif %}
 </div>
