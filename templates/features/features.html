@@ -1,11 +1,7 @@
-{% extends "base.html" %} 
-
+{% extends "base.html" %}
 {% block page_title %} Features Home {% endblock %}
-
 {% block content %}
-
 {% block feedback_messages %} {% include 'feedbackmessages.html' %} {% endblock feedback_messages %}
-
 <div class="container">
     <a href="{% url 'features:feature_add' %}" class="btn btn-secondary mt-3">Request a Feature &rarr;</a>
 </div>
@@ -31,31 +27,28 @@
                     <a href="{% url 'features:feature_detail' pk=feature.pk %}" class="btn btn-outline-dark">Read More &rarr;</a>
                     <span class="views">{{ feature.views }} <i class="fas fa-eye"></i></span>
                     <span class="views">{{ feature.likes }} <i class="fas fa-thumbs-up"></i> </span>
-                    
                 </div>
             </div>
             {% endfor %}
         </div>
         {% if user.is_authenticated %}
-            {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+        {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
         {% endif %}
     </div>
     <div class="pagination">
-        {% if features.has_previous %}
-            <a class="btn btn-secondary" href="?page=1">First</a>
-            <a class="btn btn-secondary" href="?page={{ features.previous_page_number }}">&lt;</a>
-        {% endif %}
-        {% for num in features.paginator.page_range %}
-            {% if features.number == num %}
-                <a class="btn btn-secondary" href="?page={{ features.number }}"> {{ features.number }}</a>
-                {% elif num > features.number|add:'-2' and num < features.number|add:'2' %} <a class="btn btn-secondary" href="?page={{ num }}"> {{ num }}</a>
+        <span class="step-links">
+            {% if features.has_previous %}
+            <a class="btn btn-secondary" href="?page=1">&laquo; first</a>
+            <a class="btn btn-secondary" href="?page={{ features.previous_page_number }}">previous</a>
             {% endif %}
-        {% endfor %}
-            {% if feature.has_next %}
-                <a class="btn btn-secondary" href="?page={{ features.previous_page_number }}">&gt;</a>
-                <a class="btn btn-secondary" href="?page={{ feature.paginator.num_pages }}">last</a>
+            <span class="current alert alert-secondary small">
+                Page {{ features.number }} of {{ features.paginator.num_pages }}.
+            </span>
+            {% if features.has_next %}
+            <a class="btn btn-secondary" href="?page={{ features.next_page_number }}">next</a>
+            <a class="btn btn-secondary" href="?page={{ features.paginator.num_pages }}">last &raquo;</a>
             {% endif %}
+        </span>
     </div>
 </div>
-
 {% endblock %}
