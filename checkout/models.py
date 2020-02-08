@@ -4,6 +4,7 @@ from django.utils import timezone
 
 class Order(models.Model):
 	full_name = models.CharField(max_length=50, blank=False)
+	email = models.CharField(max_length=70, blank=False, default='')
 	phone_number = models.CharField(max_length=20, blank=False)
 	country = models.CharField(max_length=40, blank=False)
 	post_code = models.CharField(max_length=20, blank=False)
