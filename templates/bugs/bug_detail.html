@@ -28,7 +28,8 @@
         </h2>
         <br>
         <p class=" text-muted">Posted by <b>{{ bug.author }}</b> on <b>{{ bug.created_on|date:"M d, Y" }}</b> at <b>{{bug.created_on|time:"h:i a"}}</b></p>
-        <br>
+        
+        <hr/>
         <p class="card-text">{{ bug.content | safe }}</p>
         <hr/>
         <!-- *** -->
@@ -84,6 +85,7 @@
         <!-- comments -->
         {% with comments.count as total_comments %}
           <h2>{{ total_comments }} comments</h2>
+          <hr/>
         {% endwith %}
          
         {% for comment in comments %}

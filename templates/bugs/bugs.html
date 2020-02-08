@@ -26,10 +26,11 @@
                             {% endif %}
                         </h2>
                         <p class="card-text text-muted h6">{{ bug.author }} <b>on</b> {{ bug.created_on|date:"M d, Y" }} </p>
+                        <hr/>
                         <p class="card-text">{{bug.content|slice:":100" }}</p>
                         <a href="{% url 'bugs:bug_detail' pk=bug.pk %}" class="btn btn-outline-dark">Read More &rarr;</a>
-                        <span class="views">{{ bug.views }} <i class="fas fa-eye"></i></span>
-                        <span class="views">{{ bug.likes }} <i class="fas fa-thumbs-up"></i> </span>
+                        <span class="views mr-1 pl-1"> {{ bug.views }} <i class="fas fa-eye"></i></span>
+                        <span class="views mr-1">{{ bug.likes }} <i class="fas fa-thumbs-up"></i></span>
                     </div>
                 </div>
                 {% endfor %}
@@ -49,10 +50,10 @@
                     {% elif num > bugs.number|add:'-2' and num < bugs.number|add:'2' %} <a class="btn btn-secondary" href="?page={{ num }}"> {{ num }}</a>
                 {% endif %}
             {% endfor %}
-                {% if bugs.has_next %}
-                    <a class="btn btn-secondary" href="?page={{ features.previous_page_number }}">&gt;</a>
-                    <a class="btn btn-secondary" href="?page={{ bugs.paginator.num_pages }}">last</a>
-                {% endif %}
+            {% if bugs.has_next %}
+                <a class="btn btn-secondary" href="?page={{ features.previous_page_number }}">&gt;</a>
+                <a class="btn btn-secondary" href="?page={{ bugs.paginator.num_pages }}">last</a>
+            {% endif %}
         </div>
     </div>
 </div>
