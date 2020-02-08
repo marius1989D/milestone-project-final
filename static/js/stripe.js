@@ -26,6 +26,8 @@ var stripe = Stripe('pk_test_0AlIWPFmuv4xQKqInu9ZXGjs00wE5LMRcy');
 
   // Create an instance of the card Element.
   var card = elements.create('card', {
+    hidePostalCode : true,
+    style : style,
   	classes : {
   		base : "form-control",
   		invalid : "error"
