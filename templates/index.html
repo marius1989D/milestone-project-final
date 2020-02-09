@@ -1,30 +1,55 @@
 {% extends "base.html" %}
-{% block page_title %} HOME {% endblock %} 
-
-
+{% block page_title %} HOME {% endblock %}
 {% block content %}
-
 {% block feedback_messages %} {% include 'feedbackmessages.html' %} {% endblock feedback_messages %}
-
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8">
-            {% for feature in features %}
-                {{ feature.title }}
-            {% endfor %}
-        </div>
-
-        <div class="col-md-4 float-right">
+        <div class="col-md-5">
             <div class="card my-4">
-                <h5 class="card-header">BLOG</h5>
+                <h5 class="card-header text-center"><a class="nav-link font-weight-bold nav-font" href="{% url 'features:features_list' %}">Latest Features Posted <i class="fas fa-tools"></i></a></h5>
+                <div class="card-body">
+                    {% for feature in features %}
+                    <h6 class="font-weight-bold">{{ feature.title }}
+                        <small><span class="card-text text-muted float-right">Posted by <b>{{ feature.author }}</b> on {{ feature.created_on|date:"M d, Y" }} </span></small></h6>
+                    <small>
+                        <p class="card-text">{{ feature.content|slice:":50" }}</p>
+                    </small>
+                    <small><a href="{% url 'features:feature_detail' pk=feature.pk %}" class="btn-outline-info">Read More &rarr;</a><span class="alert-warning float-right">Price: <i class="fas fa-pound-sign"></i>{{ feature.price }}</span></small>
+                    <hr />
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card my-4">
+                <h5 class="card-header text-center"><a class="nav-link font-weight-bold nav-font" href="{% url 'bugs:bugs_list' %}">Latest Bugs Posted <i class="fas fa-bug"></i></a></h5>
+                <div class="card-body">
+                    {% for bug in bugs %}
+                    <h6 class="font-weight-bold">{{ bug.title }}
+                        <small><span class="card-text text-muted float-right">Posted by <b>{{ bug.author }}</b> on {{ bug.created_on|date:"M d, Y" }} </span></small></h6>
+                    <small>
+                        <p class="card-text">{{ bug.content|slice:":50" }}</p>
+                    </small>
+                    <small><a href="{% url 'bugs:bug_detail' pk=bug.pk %}" class="btn-outline-info">Read More &rarr;</a></small>
+                    <hr />
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 float-right">
+            <div class="card my-4">
+                <h5 class="card-header text-center"><a class="nav-link font-weight-bold nav-font" href="{% url 'blog:blog' %}">Latest from the Blog <i class="fas fa-blog"></i></a></h5>
                 <div class="card-body">
                     {% for post in blogs %}
-                    <h6 class="post-title">{{ post.title }}</h6>
+                    <h6 class="font-weight-bold">{{ post.title }}</h6>
+                    <small><span class="card-text text-muted">Posted by <b>{{ post.author }}</b> on {{ post.created_on|date:"M d, Y" }}</span></small>
+                    <p class="card-text">{{post.content|slice:":50" }}</p>
+                    <small><a href="{% url 'blog:post_detail' slug=post.slug %}" class="btn-outline-info">Read More &rarr;</a></small>
+                    <hr />
                     {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}

@@ -16,8 +16,8 @@ from features.models import Feature
 def index(request):
     """Return the index.html file"""
     blogs = Post.objects.filter(status=1).order_by('-created_on')[:5]
-    bugs = Bug.objects.order_by('-created_on')[:5]
-    features = Feature.objects.order_by('-created_on')[:5]
+    bugs = Bug.objects.order_by('-created_on')[:3]
+    features = Feature.objects.order_by('-created_on')[:3]
     
     return render(request, 'index.html', {'blogs': blogs, 'bugs': bugs, 'features': features})
 
