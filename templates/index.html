@@ -1,18 +1,24 @@
 {% extends "base.html" %}
 {% block page_title %} HOME {% endblock %} 
+
+
 {% block content %}
+
 {% block feedback_messages %} {% include 'feedbackmessages.html' %} {% endblock feedback_messages %}
+
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            
+            {% for feature in features %}
+                {{ feature.title }}
+            {% endfor %}
         </div>
 
-        <div class="row-md4 float-right">
+        <div class="col-md-4 float-right">
             <div class="card my-4">
                 <h5 class="card-header">BLOG</h5>
                 <div class="card-body">
-                    {% for post in post %}
+                    {% for post in blogs %}
                     <h6 class="post-title">{{ post.title }}</h6>
                     {% endfor %}
                 </div>

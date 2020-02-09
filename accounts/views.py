@@ -5,14 +5,21 @@ from django.urls import reverse
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserLoginForm
+from blog.models import Post
+from bugs.models import Bug
+from features.models import Feature
 
 
 
 
 # Create your views here.
 def index(request):
-    """A view that displays the index page"""
-    return render(request, "index.html")
+    """Return the index.html file"""
+    blogs = Post.objects.filter(status=1).order_by('-created_on')[:5]
+    bugs = Bug.objects.order_by('-created_on')[:5]
+    features = Feature.objects.order_by('-created_on')[:5]
+    
+    return render(request, 'index.html', {'blogs': blogs, 'bugs': bugs, 'features': features})
 
 
 def logout(request):
