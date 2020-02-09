@@ -1,12 +1,23 @@
 {% extends "base.html" %}
+
 {% block page_title %} HOME {% endblock %}
+
 {% block content %}
+
 {% block feedback_messages %} {% include 'feedbackmessages.html' %} {% endblock feedback_messages %}
+
 <div class="container-fluid">
     <div class="row">
+        <!-- Features section -->
         <div class="col-md-5">
             <div class="card my-4">
                 <h5 class="card-header text-center"><a class="nav-link font-weight-bold nav-font" href="{% url 'features:features_list' %}">Latest Features Posted <i class="fas fa-tools"></i></a></h5>
+                <section class="alert alert_introduction alert-dismissible col-xs-12" role="alert">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Features have a fiexd development cost of £10. To get a Feature simply add it to your cart, pay for it, and we will send it to you by email.</p>
+                    <p>If you can't find the feature you need on our <a href="{% url 'features:features_list' %}">Features</a> page, you can request one using <a href="{% url 'features:feature_add' %}">Request a Feature</a> button.</p>
+                </section>
+                <hr/>
                 <div class="card-body">
                     {% for feature in features %}
                     <h6 class="font-weight-bold">{{ feature.title }}
@@ -20,9 +31,16 @@
                 </div>
             </div>
         </div>
+        <!-- Bugs section -->
         <div class="col-md-4">
             <div class="card my-4">
                 <h5 class="card-header text-center"><a class="nav-link font-weight-bold nav-font" href="{% url 'bugs:bugs_list' %}">Latest Bugs Posted <i class="fas fa-bug"></i></a></h5>
+                <section class="alert alert_introduction alert-dismissible col-xs-12" role="alert">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Bugs are free of charge. Have a look on the <a href="{% url 'bugs:bugs_list' %}">bugs list</a> to check if your bug have already been fixed. If you can't find it simply <a href="{% url 'bugs:bug_add' %}">Report a Bug</a>.
+                    </p>
+                </section>
+                <hr/>
                 <div class="card-body">
                     {% for bug in bugs %}
                     <h6 class="font-weight-bold">{{ bug.title }}
@@ -36,14 +54,15 @@
                 </div>
             </div>
         </div>
+        <!-- Blog section -->
         <div class="col-md-3 float-right">
             <div class="card my-4">
                 <h5 class="card-header text-center"><a class="nav-link font-weight-bold nav-font" href="{% url 'blog:blog' %}">Latest from the Blog <i class="fas fa-blog"></i></a></h5>
                 <div class="card-body">
                     {% for post in blogs %}
-                    <h6 class="font-weight-bold">{{ post.title }}</h6>
+                    <h6 class="font-weight-bold pb-1">{{ post.title }}</h6>
                     <small><span class="card-text text-muted">Posted by <b>{{ post.author }}</b> on {{ post.created_on|date:"M d, Y" }}</span></small>
-                    <p class="card-text">{{post.content|slice:":50" }}</p>
+                    <!--<p class="card-text pb-0">{{post.content|slice:":50" }}</p>-->
                     <small><a href="{% url 'blog:post_detail' slug=post.slug %}" class="btn-outline-info">Read More &rarr;</a></small>
                     <hr />
                     {% endfor %}

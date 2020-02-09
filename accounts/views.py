@@ -15,7 +15,7 @@ from features.models import Feature
 # Create your views here.
 def index(request):
     """Return the index.html file"""
-    blogs = Post.objects.filter(status=1).order_by('-created_on')[:5]
+    blogs = Post.objects.filter(status=1).order_by('-created_on')[:6]
     bugs = Bug.objects.order_by('-created_on')[:3]
     features = Feature.objects.order_by('-created_on')[:3]
     
