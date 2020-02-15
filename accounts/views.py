@@ -4,6 +4,7 @@ from django.contrib import messages, auth
 from django.urls import reverse
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from .forms import UserRegistrationForm, UserLoginForm
 from blog.models import Post
 from bugs.models import Bug
@@ -21,6 +22,49 @@ def index(request):
     
     return render(request, 'index.html', {'blogs': blogs, 'bugs': bugs, 'features': features})
 
+def get_data(request):
+    """
+    Chart for displaying all Bugs and Features
+    """
+    labels = ['Features', 'Bugs']
+    bugs = Bug.objects.all().count()
+    features = Feature.objects.count()
+    default = [bugs, features]
+
+
+    """
+    Chart for displaying all Bugs sorted by status
+    """
+    labels_status_bugs = ['Received', 'In progress', 'Done']
+    bugs_received = Bug.objects.filter(status="Received").count()
+    bugs_inprogress = Bug.objects.filter(status="In progress").count()
+    bugs_done = Bug.objects.filter(status="Done").count()
+    default_bugs_status = [bugs_received, bugs_inprogress, bugs_done]
+
+    """
+    Chart for displaying all Features sorted by status
+    """
+    labels_status_features = ['Received', 'In progress', 'Done']
+    features_received = Feature.objects.filter(status="Received").count()
+    features_inprogress = Feature.objects.filter(status="In progress").count()
+    features_done = Feature.objects.filter(status="Done").count()
+    default_features_status = [features_received, features_inprogress, features_done]
+
+
+    data = {
+        #chart 1
+        "labels": labels,
+        "default" : default,
+
+        #chart 2
+        "labels_status_bugs": labels_status_bugs,
+        "default_bugs_status" : default_bugs_status,
+
+        #chart 3
+        "labels_status_features": labels_status_features,
+        "default_features_status" : default_features_status,
+    }
+    return JsonResponse(data)
 
 def logout(request):
     """A view that logs the user out and redirects back to the index page"""
@@ -76,7 +120,6 @@ def register(request):
         
     return render(request, 'accounts/register.html', {
         "registration_form": registration_form})
-
 
 
 

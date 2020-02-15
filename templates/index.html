@@ -1,11 +1,13 @@
 {% extends "base.html" %}
-
 {% block page_title %} HOME {% endblock %}
 
+{% block head_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+
+{% endblock head_js %}
+
 {% block content %}
-
 {% block feedback_messages %} {% include 'feedbackmessages.html' %} {% endblock feedback_messages %}
-
 <div class="container-fluid">
     <div class="row">
         <!-- Features section -->
@@ -17,7 +19,8 @@
                     <p>Features have a fiexd development cost of £10. To get a Feature simply add it to your cart, pay for it, and we will send it to you by email.</p>
                     <p>If you can't find the feature you need on our <a href="{% url 'features:features_list' %}">Features</a> page, you can request one using <a href="{% url 'features:feature_add' %}">Request a Feature</a> button.</p>
                 </section>
-                <hr/>
+                <hr />
+                <hr />
                 <div class="card-body">
                     {% for feature in features %}
                     <h6 class="font-weight-bold">{{ feature.title }}
@@ -40,7 +43,8 @@
                     <p>Bugs are free of charge. Have a look on the <a href="{% url 'bugs:bugs_list' %}">bugs list</a> to check if your bug have already been fixed. If you can't find it simply <a href="{% url 'bugs:bug_add' %}">Report a Bug</a>.
                     </p>
                 </section>
-                <hr/>
+                <hr />
+                <hr />
                 <div class="card-body">
                     {% for bug in bugs %}
                     <h6 class="font-weight-bold">{{ bug.title }}
@@ -70,5 +74,7 @@
             </div>
         </div>
     </div>
+    {% block charts %} {% include 'charts.html' %} {% endblock charts %}
 </div>
+
 {% endblock %}
