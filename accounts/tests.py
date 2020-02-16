@@ -20,4 +20,13 @@ class TestAccountsForms(TestCase):
 		})
 		self.assertTrue(form.is_valid())
 
-	
+	"""Tests for login and registration views"""
+	def test_get_login_page(self):
+		page = self.client.get("/accounts/login/")
+		self.assertEqual(page.status_code, 200)
+		self.assertTemplateUsed(page, "accounts/login.html")
+
+	def test_get_registration_page(self):
+		page = self.client.get("/accounts/register/")
+		self.assertEqual(page.status_code, 200)
+		self.assertTemplateUsed(page, "accounts/register.html")
