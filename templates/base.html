@@ -23,6 +23,9 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
+                        <a class="nav-link font-weight-bold nav-font" href="{% url 'index' %}"><i class="fas fa-home"></i> Home |</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link font-weight-bold nav-font" href="{% url 'features:features_list' %}"><i class="fas fa-tools"></i> Features |</a>
                     </li>
                     <li class="nav-item">
@@ -59,9 +62,33 @@
     {% block content %}
     <!-- Content Goes here -->
     {% endblock content %}
+    <!-- Footer -->
+    <footer class="page-footer font-small darken-3 navbar navbar-fixed-bottom bg-secondary mt-5">
+        <div class="container border-bottom border-dark">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-12 offset-md-10 py-2">
+                    <div class="mb-2">
+                        <a class="fa-lg white-text mr-md-5 mr-3 fa-1x col-font" href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a>
+                        <a class="fa-lg white-text mr-md-5 mr-3 fa-1x col-font" href="{% url 'features:features_list' %}"><i class="fas fa-tools"></i> Features</a>
+                        <a class="fa-lg white-text mr-md-5 mr-3 fa-1x col-font" href="{% url 'bugs:bugs_list' %}"><i class="fas fa-bug"></i> Bugs</a>
+                        <a class="fa-lg white-text mr-md-5 mr-3 fa-1x col-font" href="{% url 'blog:blog' %}"><i class="fas fa-blog"></i> Blog</a>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 offset-md-8">
+                    <div class="footer-copyright text-center py-3">
+                        <small class="col-font" >© 2020 Copyright: Marius G. Dumitru | Final project for <a class="col-font" href="https://codeinstitute.net/">Code Institute</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer -->
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>

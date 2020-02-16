@@ -16,13 +16,9 @@ body {
     box-shadow: 0 4px 2px -2px;
 }
 
-
-/*.btn-danger {
-    color: #fff;
-    background-color: #f00000;
-    border-color: #dc281e;
-}*/
-
+.col-font {
+    color: #295d7a !important;
+}
 
 .card {
     box-shadow: 0 2px 6px #E3E7EB;
