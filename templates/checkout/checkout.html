@@ -2,21 +2,42 @@
 {% block page_title %} Checkout {% endblock %}
 {% load crispy_forms_tags %}
 {% load static from staticfiles %}
-
 {% block content %}
-
 {% block feedback_messages %} {% include 'feedbackmessages.html' %} {% endblock feedback_messages %}
-
 <div class="container ">
     <div class="row mt-5">
-        <div class="col-md-8">
+        <div class="col-md-5 float-right">
+            <div class="card-body alert-info">
+                <p>
+                    <i class="fas fa-info-circle"></i>
+                    Please only use the <strong>example card</strong> below:
+                </p>
+                <table class="table table-striped">
+                    
+                    <tbody>
+                        <tr>
+                            <th scope="row">Card number:</th>
+                            <td>4242 4242 4242 4242</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Exp Date</th>
+                            <td>any date in the future</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">CVC</th>
+                            <td>any 3 digits</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-7">
             <div class="card-body card-color">
                 <form role="form" method="post" id="payment-form" action="{% url 'checkout:checkout' %}">
                     {% csrf_token %}
-                    <legend>Payment Details</legend>                    
+                    <legend>Payment Details</legend>
                     <div class="form-group">
                         <label for="card-element">Credit Card</label>
-                    
                         <div id="card-element"></div>
                     </div>
                     <div id="card-errors" class="alert-danger" role="alert"></div>
@@ -30,6 +51,7 @@
                 <div id="stripe-token-handler" class="is-hidden"><span class="token"></span></div>
             </div>
         </div>
+
     </div>
 </div>
 <script src="https://js.stripe.com/v3/"></script>
