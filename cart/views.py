@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 
 def view_cart(request):
 	"""
@@ -8,7 +9,7 @@ def view_cart(request):
 
 def add_to_cart(request, id):
     """Add a quantity of the specified product to the cart"""
-    quantity = int(request.POST.get('quantity'))
+    quantity = 1
 
     cart = request.session.get('cart', {})
     if id in cart:
