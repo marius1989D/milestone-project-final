@@ -59,30 +59,27 @@
             </div>
         </div>
     </nav>
+    <main>
     {% block content %}
     <!-- Content Goes here -->
     {% endblock content %}
+    </main>
     <!-- Footer -->
-    <footer class="page-footer font-small darken-3 navbar navbar-fixed-bottom bg-secondary mt-5">
-        <div class="container border-bottom border-dark">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-12 offset-md-10 py-2">
-                    <div class="mb-2">
-                        <a class="fa-lg white-text mr-md-5 mr-3 fa-1x col-font" href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a>
-                        <a class="fa-lg white-text mr-md-5 mr-3 fa-1x col-font" href="{% url 'features:features_list' %}"><i class="fas fa-tools"></i> Features</a>
-                        <a class="fa-lg white-text mr-md-5 mr-3 fa-1x col-font" href="{% url 'bugs:bugs_list' %}"><i class="fas fa-bug"></i> Bugs</a>
-                        <a class="fa-lg white-text mr-md-5 mr-3 fa-1x col-font" href="{% url 'blog:blog' %}"><i class="fas fa-blog"></i> Blog</a>
-                    </div>
-                </div>
-            </div> 
-        </div>
+    <footer id="footer" class="page-footer fixed-bottom font-small bg-secondary">
         <div class="container">
             <div class="row">
-                <div class="col-12 offset-md-8">
-                    <div class="footer-copyright text-center py-3">
-                        <small class="col-font" >© 2020 Copyright: Marius G. Dumitru | Final project for <a class="col-font" href="https://codeinstitute.net/">Code Institute</a></small>
+                <div class="col-md-12 pt-1">
+                    <div class="flex-center">
+                        <a class="fa-lg mr-md-5 mr-3 fa-1x col-font" href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a>
+                        <a class="fa-lg mr-md-5 mr-3 fa-1x col-font" href="{% url 'features:features_list' %}"><i class="fas fa-tools"></i> Features</a>
+                        <a class="fa-lg mr-md-5 mr-3 fa-1x col-font" href="{% url 'bugs:bugs_list' %}"><i class="fas fa-bug"></i> Bugs</a>
+                        <a class="fa-lg mr-md-5 mr-3 fa-1x col-font" href="{% url 'blog:blog' %}"><i class="fas fa-blog"></i> Blog</a>
                     </div>
+                    <hr />
                 </div>
+            </div>
+            <div class="footer-copyright text-center pb-1">
+                <small class="col-font">© 2020 Copyright: Marius G. Dumitru | Final project for <a class="col-font" href="https://codeinstitute.net/">Code Institute</a></small>
             </div>
         </div>
     </footer>
@@ -95,6 +92,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <script type="text/javascript" src="{% static 'js/chart.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+    
 </body>
 
 </html>
