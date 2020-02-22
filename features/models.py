@@ -35,7 +35,7 @@ class Feature(models.Model):
 	created_on = models.DateTimeField(auto_now_add=True)
 	status = models.CharField(max_length=15 ,choices=CHOICES, default=Received)
 	views = models.IntegerField(default=0)
-	price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True, default=10.00)
+	price = models.DecimalField(max_digits=6, decimal_places=2, default=10.00)
 
 
 	class Meta:

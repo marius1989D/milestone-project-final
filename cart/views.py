@@ -27,17 +27,13 @@ def add_to_cart(request, id):
 @login_required()
 def adjust_cart(request, id):
     """
-    Adjust the quantity of the specified product to the specified
-    amount
+    Delete the Feature from the cart
     """
     
-    quantity = int(request.POST.get('quantity'))
+    
     cart = request.session.get('cart', {})
 
-    if quantity > 0:
-        cart[id] = quantity
-    else:
-        cart.pop(str(id))
+    cart.pop(str(id))
 
     request.session['cart'] = cart
     return redirect(reverse('cart:view_cart'))
