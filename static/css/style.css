@@ -22,7 +22,7 @@ body {
     font-family: "Roboto", sans-serif;
     font-size: 17px;
     background-color: #fdfdfd;
-    background-image: url("media/img/bugs.jpg");
+    background-image: url("../img/bugs.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
