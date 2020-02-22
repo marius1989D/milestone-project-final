@@ -32,7 +32,8 @@ SECRET_KEY = 'SECRET_KEY'
 DEBUG = True
 
 #
-ALLOWED_HOSTS = ['ci-final-project.herokuapp.com']
+ALLOWED_HOSTS = ['ci-final-project.herokuapp.com',
+                    '127.0.0.1']
 
 
 # Application definition
