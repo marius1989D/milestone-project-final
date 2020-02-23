@@ -6,6 +6,9 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.views.generic import RedirectView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import View
 
 from .models import Feature, Comment
 from .forms import FeatureCommentForm, FeaturePostForm
@@ -47,17 +50,6 @@ def feature_detail(request, pk):
 												'new_comment': new_comment,
 												'comment_form': comment_form})
 
-
-@login_required
-def feature_likes(request, pk):
-	"""
-	This view allow users to like bug reports
-	"""
-	feature = get_object_or_404(Feature, pk=pk)
-	feature.likes += 1
-	feature.save()
-
-	return redirect('features:feature_detail', pk=feature.pk)
 
 
 @login_required
