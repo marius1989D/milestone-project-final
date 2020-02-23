@@ -25,6 +25,7 @@ def features_list(request):
 	features = paginator.get_page(page)
 	return render(request, 'features/features.html', {'features': features})
 
+
 def feature_detail(request, pk):
 	"""
 	This view allow users to see a specific bug report in a separate window
@@ -49,8 +50,6 @@ def feature_detail(request, pk):
 												'comments': comments,
 												'new_comment': new_comment,
 												'comment_form': comment_form})
-
-
 
 @login_required
 def feature_add(request):
@@ -106,5 +105,3 @@ def feature_edit(request, pk):
 		messages.error(request, 'You can\'t edit this!')
 		feature_form = FeaturePostForm()
 	return redirect('features:feature_detail', pk=feature.pk)
-
-
